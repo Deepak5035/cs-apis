@@ -18,15 +18,23 @@ public class TestController {
 
 	@Autowired
 	TestServiceImpl patientServiceImpl;
-	
+
 	@PostMapping(value = "/t1/addTest")
-	public ResponseEntity<TestResponse> addingTest(@RequestBody TestRequest patientReq){
-		
-	TestResponse patientResponse = new TestResponse();
-	
-	patientResponse = patientServiceImpl.addingNewTest(patientReq);
-	
-	return new ResponseEntity<TestResponse>(patientResponse, HttpStatus.OK);	
-		
+	public ResponseEntity<TestResponse> addingTest(@RequestBody TestRequest patientReq) {
+
+		TestResponse testResponse = new TestResponse();
+
+		testResponse = patientServiceImpl.addingNewTest(patientReq);
+
+		return new ResponseEntity<TestResponse>(testResponse, HttpStatus.OK);
+
+	}
+
+	public ResponseEntity<TestResponse> deleteTest(@RequestBody TestRequest testRequest) {
+
+		TestResponse testResponse = new TestResponse();
+
+		return new ResponseEntity<TestResponse>(testResponse, HttpStatus.OK);
+
 	}
 }
