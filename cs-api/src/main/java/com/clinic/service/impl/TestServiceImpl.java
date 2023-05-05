@@ -3,6 +3,7 @@ package com.clinic.service.impl;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.clinic.dao.TestServiceDao;
 import com.clinic.entity.TestEntity;
@@ -12,6 +13,7 @@ import com.clinic.response.TestResponse;
 import com.clinic.service.TestService;
 import com.clinic.utility.ConstantManager;
 
+@Service
 public class TestServiceImpl implements TestService {
 
 	@Autowired

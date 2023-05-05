@@ -1,8 +1,8 @@
 package com.clinic.request;
 
-import java.util.Map;
-
+import java.util.List;
 import com.clinic.entity.AddressEntity;
+import com.clinic.entity.PatientTestEntity;
 
 public class PatientRequest {
 
@@ -16,7 +16,7 @@ public class PatientRequest {
 	
 	private String refByDoc;
 	
-	private Map<Integer,String> testTypes;
+	private List<PatientTestEntity> testTypes;
 
 
 	public String getName() {
@@ -59,11 +59,11 @@ public class PatientRequest {
 		this.refByDoc = refByDoc;
 	}
 
-	public Map<Integer, String> getTestTypes() {
+	public List<PatientTestEntity> getTestTypes() {
 		return testTypes;
 	}
 
-	public void setTestTypes(Map<Integer, String> testTypes) {
+	public void setTestTypes(List<PatientTestEntity> testTypes) {
 		this.testTypes = testTypes;
 	}
 }

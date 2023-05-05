@@ -2,14 +2,19 @@ package com.clinic.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
-@Table(name ="tbl_testTable")
-public class TestEntity {
+@Table(name ="tbl_PatientTestTable")
+public class PatientTestEntity {
 
 	@Id
 	@Column(name = "id")
@@ -24,6 +29,11 @@ public class TestEntity {
 	
 	@Column(name = "testCost")
 	private double testCost;
+	
+	@JsonIgnore
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "pid" , referencedColumnName = "id")
+	private PatientEntity patientEntity;
 
 	public Long getId() {
 		return id;
@@ -56,4 +66,5 @@ public class TestEntity {
 	public void setTestCost(double testCost) {
 		this.testCost = testCost;
 	}
+	
 }

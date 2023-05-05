@@ -43,7 +43,7 @@ public class PatientEntity {
 	
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "patientEntity")
 	@Fetch(FetchMode.JOIN)
-	private List<TestEntity> test;
+	private List<PatientTestEntity> test;
 	
 	public Long getId() {
 		return id;

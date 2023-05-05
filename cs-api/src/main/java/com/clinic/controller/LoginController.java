@@ -49,6 +49,5 @@ public class LoginController {
 		loginResponse = loginServiceImpl.checkuserLogin(loginRequest , senderJwk);
 		
 		return new ResponseEntity<LoginResponse>(loginResponse,HttpStatus.OK);
-		
 	}
 }
