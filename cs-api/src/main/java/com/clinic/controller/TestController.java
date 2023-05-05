@@ -33,6 +33,8 @@ public class TestController {
 	public ResponseEntity<TestResponse> deleteTest(@RequestBody TestRequest testRequest) {
 
 		TestResponse testResponse = new TestResponse();
+		
+		testResponse = patientServiceImpl.deleteTest(testRequest);
 
 		return new ResponseEntity<TestResponse>(testResponse, HttpStatus.OK);
 

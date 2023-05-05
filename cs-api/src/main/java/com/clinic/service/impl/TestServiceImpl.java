@@ -10,6 +10,7 @@ import com.clinic.model.StatusDescription;
 import com.clinic.request.TestRequest;
 import com.clinic.response.TestResponse;
 import com.clinic.service.TestService;
+import com.clinic.utility.ConstantManager;
 
 public class TestServiceImpl implements TestService {
 
@@ -29,17 +30,29 @@ public class TestServiceImpl implements TestService {
 		testEntity.setTestId(testId);
 		testEntity.setTestType(testRequest.getTestType());
 		testEntity.setTestCost(testRequest.getTestCost());
+         
 		
+		testServiceDao.save(testEntity);
+		statusDescription.setDescription(ConstantManager.Successfull.getDescription());
+		statusDescription.setCode(ConstantManager.Successfull.getStatusCode());
+		testResponse.setStatusDescription(statusDescription);
+        testResponse.setTestTypeEntity(testEntity);
 		
-		
-		return null;
+		return testResponse;
 
 	}
 
 	@Override
 	public TestResponse deleteTest(TestRequest testRequest) {
+		
+		StatusDescription statusDescription = new StatusDescription();
+		TestResponse testResponse = new TestResponse();
+		
+		testServiceDao.deletebyTestId(testRequest.getTestId());
 
-		return null;
+		testResponse.setStatusDescription(statusDescription);
+        		
+		return testResponse;
 
 	}
 

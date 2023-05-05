@@ -40,5 +40,6 @@ public class ConstantManager {
 	public static final ConstantManager UserNotExists = new ConstantManager("User Not Exists" , 404);
 	public static final ConstantManager LoginSucessfull = new ConstantManager("Login Successfull For User" , 200);
 	public static final ConstantManager IncurrectCredentials = new ConstantManager("Credentials Are Not Correct" , 401);
+	public static final ConstantManager Successfull = new ConstantManager("Successfull" , 200);
 	
 }

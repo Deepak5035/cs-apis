@@ -1,12 +1,12 @@
 package com.clinic.response;
 
-import com.clinic.entity.TestTypeEntity;
+import com.clinic.entity.TestEntity;
 import com.clinic.model.StatusDescription;
 
 public class TestResponse {
 
 	StatusDescription statusDescription;
-	TestTypeEntity testTypeEntity;
+	TestEntity testTypeEntity;
 	
 	public StatusDescription getStatusDescription() {
 		return statusDescription;
@@ -14,10 +14,10 @@ public class TestResponse {
 	public void setStatusDescription(StatusDescription statusDescription) {
 		this.statusDescription = statusDescription;
 	}
-	public TestTypeEntity getTestTypeEntity() {
+	public TestEntity getTestTypeEntity() {
 		return testTypeEntity;
 	}
-	public void setTestTypeEntity(TestTypeEntity testTypeEntity) {
+	public void setTestTypeEntity(TestEntity testTypeEntity) {
 		this.testTypeEntity = testTypeEntity;
 	}
 	
