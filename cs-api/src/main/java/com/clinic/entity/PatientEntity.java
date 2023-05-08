@@ -81,4 +81,10 @@ public class PatientEntity {
 	public void setRefByDoc(String refByDoc) {
 		this.refByDoc = refByDoc;
 	}
+	public List<PatientTestEntity> getTest() {
+		return test;
+	}
+	public void setTest(List<PatientTestEntity> test) {
+		this.test = test;
+	}
 }

@@ -31,7 +31,7 @@ public class PatientServiceImpl implements PatientService {
 
 	@Autowired
 	PatientTestDao patientTestDao;
-	
+
 	@Autowired
 	TestServiceDao testServiceDao;
 
@@ -65,9 +65,19 @@ public class PatientServiceImpl implements PatientService {
 			for (TestRequest entity : patientRequest.getTestTypes()) {
 				PatientTestEntity patientTestEntity = new PatientTestEntity();
 				patientTestEntity.setTestType(entity.getTestType());
-				TestEntity testEntity  = testServiceDao.getTestIdByTestName(entity.getTestType().trim());
+				
+				TestEntity testEntity = testServiceDao.getTestIdByTestName(entity.getTestType().trim());
 				patientTestEntity.setTestId(testEntity.getTestId());
-				patientTestEntity.setTestCost(entity.getTestCost());
+
+				System.out.println(entity.getTestType());
+				System.out.println(entity.getTestCost());
+				System.out.println(testEntity.getTestCost());
+				
+				if(entity.getTestCost()  != 0.0) {
+					patientTestEntity.setTestCost(entity.getTestCost());
+				}else {
+					patientTestEntity.setTestCost(testEntity.getTestCost());
+				}
 				patientTestEntity.setPatientEntity(patientEntity);
 				patientTestDao.save(patientTestEntity);
 			}
@@ -86,21 +96,20 @@ public class PatientServiceImpl implements PatientService {
 	}
 
 	public PatientResponse getAllPatient() {
-		
+
 		StatusDescription statusDescription = new StatusDescription();
 		PatientResponse patientResponse = new PatientResponse();
-		
-		
-	 	try {
+
+		try {
 			List<PatientEntity> listOfAllEntity = patientServiceDao.findAll();
-			
-			if(listOfAllEntity.size()>0) {
+
+			if (listOfAllEntity.size() > 0) {
+				
 				patientResponse.setPatientEntity(listOfAllEntity);
 				statusDescription.setDescription(ConstantManager.Successfull.getDescription());
 				statusDescription.setCode(ConstantManager.Successfull.getStatusCode());
 				patientResponse.setStatusDescription(statusDescription);
-			}
-			else {
+			} else {
 				statusDescription.setDescription(ConstantManager.NoRecdordFound.getDescription());
 				statusDescription.setCode(ConstantManager.NoRecdordFound.getStatusCode());
 				patientResponse.setStatusDescription(statusDescription);
@@ -112,5 +121,5 @@ public class PatientServiceImpl implements PatientService {
 			e.printStackTrace();
 		}
 		return patientResponse;
-	} 
+	}
 }

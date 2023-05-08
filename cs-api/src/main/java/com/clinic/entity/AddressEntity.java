@@ -37,7 +37,7 @@ public class AddressEntity {
     private Long pinCode;
     
     @JsonIgnore
-	@OneToOne(fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "pid" , referencedColumnName = "id")
 	private PatientEntity patientEntity;
 
