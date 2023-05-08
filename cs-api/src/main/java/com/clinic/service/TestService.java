@@ -9,4 +9,6 @@ public interface TestService {
 	
 	public TestResponse deleteTest(TestRequest testRequest);
 	
+	public TestResponse getAllTest();
+	
 }

@@ -2,7 +2,7 @@ package com.clinic.request;
 
 public class TestRequest {
 	
-	private Long testId;
+	private Long getTestId;
 	
 	private String testType;
 	
@@ -24,12 +24,11 @@ public class TestRequest {
 		this.testCost = testCost;
 	}
 
-	public Long getTestId() {
-		return testId;
+	public Long getGetTestId() {
+		return getTestId;
 	}
 
-	public void setTestId(Long testId) {
-		this.testId = testId;
+	public void setGetTestId(Long getTestId) {
+		this.getTestId = getTestId;
 	}
-
 }

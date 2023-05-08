@@ -6,6 +6,4 @@ import com.clinic.entity.PatientEntity;
 
 public interface PatientServiceDao extends JpaRepository<PatientEntity, Long> {
 
-	
-	
 }

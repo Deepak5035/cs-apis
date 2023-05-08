@@ -9,4 +9,7 @@ public interface TestServiceDao extends JpaRepository<TestEntity, Long> {
 	
 	@Query(value = "delete from tbl_test_table where testId=:testId",nativeQuery = true)
 	public Long deletebyTestId(Long testId); 
+	
+	@Query(value = "select * from tbl_test_table where test_type=:testType",nativeQuery = true)
+	public TestEntity getTestIdByTestName(String testType);
 }

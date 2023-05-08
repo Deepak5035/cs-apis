@@ -41,5 +41,7 @@ public class ConstantManager {
 	public static final ConstantManager LoginSucessfull = new ConstantManager("Login Successfull For User" , 200);
 	public static final ConstantManager IncurrectCredentials = new ConstantManager("Credentials Are Not Correct" , 401);
 	public static final ConstantManager Successfull = new ConstantManager("Successfull" , 200);
+	public static final ConstantManager NoRecdordFound = new ConstantManager("No Record Found" , 404);
+	public static final ConstantManager ServerSideError = new ConstantManager("Exception On Server Side" , 500);
 	
 }

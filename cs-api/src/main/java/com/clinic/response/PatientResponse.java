@@ -1,5 +1,7 @@
 package com.clinic.response;
 
+import java.util.List;
+
 import com.clinic.entity.PatientEntity;
 import com.clinic.model.StatusDescription;
 
@@ -7,7 +9,7 @@ public class PatientResponse {
 
 	StatusDescription statusDescription;
 	
-	PatientEntity patientEntity;
+	List<PatientEntity> patientEntity;
 
 	public StatusDescription getStatusDescription() {
 		return statusDescription;
@@ -17,12 +19,11 @@ public class PatientResponse {
 		this.statusDescription = statusDescription;
 	}
 
-	public PatientEntity getPatientEntity() {
+	public List<PatientEntity> getPatientEntity() {
 		return patientEntity;
 	}
 
-	public void setPatientEntity(PatientEntity patientEntity) {
+	public void setPatientEntity(List<PatientEntity> patientEntity) {
 		this.patientEntity = patientEntity;
-	}
-	
+	}	
 }

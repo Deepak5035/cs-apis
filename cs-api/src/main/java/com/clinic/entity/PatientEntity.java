@@ -34,13 +34,13 @@ public class PatientEntity {
 	@Column(name = "sex")
 	private String sex;
 	
-	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "patientEntity")
-	@Fetch(FetchMode.JOIN)
-	private AddressEntity address;
-	
 	@Column(name = "refByDoc")
 	private String refByDoc;
 	
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "patientEntity")
+	@Fetch(FetchMode.JOIN)
+	private AddressEntity address;
+
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "patientEntity")
 	@Fetch(FetchMode.JOIN)
 	private List<PatientTestEntity> test;

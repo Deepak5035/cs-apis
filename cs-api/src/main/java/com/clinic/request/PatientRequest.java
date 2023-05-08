@@ -1,8 +1,6 @@
 package com.clinic.request;
 
 import java.util.List;
-import com.clinic.entity.AddressEntity;
-import com.clinic.entity.PatientTestEntity;
 
 public class PatientRequest {
 
@@ -12,11 +10,11 @@ public class PatientRequest {
 	
 	private String sex;
 	
-	private AddressEntity address;
+	private AddressRequest address;
 	
 	private String refByDoc;
 	
-	private List<PatientTestEntity> testTypes;
+	private List<TestRequest> testTypes;
 
 
 	public String getName() {
@@ -43,13 +41,6 @@ public class PatientRequest {
 		this.sex = sex;
 	}
 
-	public AddressEntity getAddress() {
-		return address;
-	}
-
-	public void setAddress(AddressEntity address) {
-		this.address = address;
-	}
 
 	public String getRefByDoc() {
 		return refByDoc;
@@ -59,11 +50,19 @@ public class PatientRequest {
 		this.refByDoc = refByDoc;
 	}
 
-	public List<PatientTestEntity> getTestTypes() {
+	public AddressRequest getAddress() {
+		return address;
+	}
+
+	public void setAddress(AddressRequest address) {
+		this.address = address;
+	}
+
+	public List<TestRequest> getTestTypes() {
 		return testTypes;
 	}
 
-	public void setTestTypes(List<PatientTestEntity> testTypes) {
+	public void setTestTypes(List<TestRequest> testTypes) {
 		this.testTypes = testTypes;
 	}
 }

@@ -30,5 +30,14 @@ public class RegisterNewPatient {
 		
 	}
 	
-	
+	@PostMapping(value = "/p2/allPatient")
+	public ResponseEntity<PatientResponse> getAllRegisterdPatient(){
+		
+		PatientResponse patientResponse = new PatientResponse();
+		                              
+		patientResponse = patientServiceImpl.getAllPatient();
+		
+		return new ResponseEntity<PatientResponse>(patientResponse , HttpStatus.OK);
+		
+	}
 }
