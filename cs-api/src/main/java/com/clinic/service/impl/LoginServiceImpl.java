@@ -81,6 +81,10 @@ public class LoginServiceImpl implements LoginService {
 
 			LoginEntity loginEntity = loginServiceDao.findByMobileNumber(loginRequest.getMobileNumber());
 
+			if (loginEntity == null) {
+				loginEntity = loginServiceDao.findByEmailId(loginRequest.getEmailId());
+			}
+
 			if (loginEntity != null) {
 
 				Boolean isCorrectPass = passwordEncryptionDescryption.passwordDecrypt(loginEntity.getPassword(),
@@ -197,4 +201,71 @@ public class LoginServiceImpl implements LoginService {
 
 	}
 
+	public LoginResponse forgotPassword(LoginRequest loginRequest) {
+
+		StatusDescription statusDescription = new StatusDescription();
+		LoginResponse loginResponse = new LoginResponse();
+
+		try {
+			LoginEntity loginEntity = loginServiceDao.findByEmailId(loginRequest.getEmailId());
+
+			if (loginEntity == null) {
+				loginEntity = loginServiceDao.findByMobileNumber(loginRequest.getMobileNumber());
+			}
+
+			if (loginEntity != null) {
+
+				String encryptedPass = passwordEncryptionDescryption.passwordEncrypt(loginRequest.getPassword());
+				loginEntity.setPassword(encryptedPass);
+
+				loginServiceDao.save(loginEntity);
+				
+				statusDescription.setDescription(ConstantManager.PasswordUpdatedSuccessfully.getDescription());
+				statusDescription.setCode(ConstantManager.PasswordUpdatedSuccessfully.getStatusCode());
+				loginResponse.setStatusDescription(statusDescription);
+
+			} else {
+				statusDescription.setDescription(ConstantManager.UserNotExists.getDescription());
+				statusDescription.setCode(ConstantManager.UserNotExists.getStatusCode());
+				loginResponse.setStatusDescription(statusDescription);
+			}
+
+		} catch (Exception e) {
+			statusDescription.setDescription(ConstantManager.ServerSideError.getDescription());
+			statusDescription.setCode(ConstantManager.ServerSideError.getStatusCode());
+			loginResponse.setStatusDescription(statusDescription);
+			e.printStackTrace();
+		}
+		return loginResponse;
+	}
+
+	public LoginResponse deleteUser(LoginRequest loginRequest) {
+
+		StatusDescription statusDescription = new StatusDescription();
+		LoginResponse loginResponse = new LoginResponse();
+
+		try {
+			System.out.println(loginRequest.getMobileNumber());
+
+			Long userId =  loginServiceDao.findByMobileNumber(loginRequest.getMobileNumber()).getId();
+			System.out.println(userId);
+			
+			//delete token
+			TokenDetailsRepo.deleteById(TokenDetailsRepo.findOneByLid(userId).getId());
+
+			loginServiceDao.deleteById(userId);
+
+			statusDescription.setCode(ConstantManager.UserDeleted.getStatusCode());
+			statusDescription.setDescription(ConstantManager.UserDeleted.getDescription());
+			loginResponse.setStatusDescription(statusDescription);
+			
+		} catch (Exception e) {
+			statusDescription.setCode(ConstantManager.ServerSideError.getStatusCode());
+			statusDescription.setDescription(ConstantManager.ServerSideError.getDescription());
+			loginResponse.setStatusDescription(statusDescription);
+			e.printStackTrace();
+		}
+
+		return loginResponse;
+	}
 }

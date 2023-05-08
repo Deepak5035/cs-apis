@@ -44,5 +44,7 @@ public class ConstantManager {
 	public static final ConstantManager NoRecdordFound = new ConstantManager("No Record Found" , 404);
 	public static final ConstantManager ServerSideError = new ConstantManager("Exception On Server Side" , 500);
 	public static final ConstantManager UnAuhorization = new ConstantManager("Exception On Server Side" , 401);
+	public static final ConstantManager UserDeleted = new ConstantManager("User Deleted" , 200);
+	public static final ConstantManager PasswordUpdatedSuccessfully = new ConstantManager("Password Updated Sucessfully" , 200);
 	
 }
