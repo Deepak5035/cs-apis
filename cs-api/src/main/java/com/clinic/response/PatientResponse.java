@@ -10,6 +10,8 @@ public class PatientResponse {
 	StatusDescription statusDescription;
 	
 	List<PatientEntity> patientEntity;
+	
+	String reportPath;
 
 	public StatusDescription getStatusDescription() {
 		return statusDescription;
@@ -25,5 +27,13 @@ public class PatientResponse {
 
 	public void setPatientEntity(List<PatientEntity> patientEntity) {
 		this.patientEntity = patientEntity;
+	}
+
+	public String getReportPath() {
+		return reportPath;
+	}
+
+	public void setReportPath(String reportPath) {
+		this.reportPath = reportPath;
 	}	
 }
