@@ -103,6 +103,7 @@ public class LoginServiceImpl implements LoginService {
 					statusDescription.setDescription(ConstantManager.LoginSucessfull.getDescription());
 					statusDescription.setCode(ConstantManager.LoginSucessfull.getStatusCode());
 					response.setStatusDescription(statusDescription);
+					response.getLoginEntity().setId(loginEntity.getId());
 					response.setTokenEntity(tokenEntity);
 
 				} else {
@@ -219,7 +220,7 @@ public class LoginServiceImpl implements LoginService {
 				loginEntity.setPassword(encryptedPass);
 
 				loginServiceDao.save(loginEntity);
-				
+
 				statusDescription.setDescription(ConstantManager.PasswordUpdatedSuccessfully.getDescription());
 				statusDescription.setCode(ConstantManager.PasswordUpdatedSuccessfully.getStatusCode());
 				loginResponse.setStatusDescription(statusDescription);
@@ -247,10 +248,10 @@ public class LoginServiceImpl implements LoginService {
 		try {
 			System.out.println(loginRequest.getMobileNumber());
 
-			Long userId =  loginServiceDao.findByMobileNumber(loginRequest.getMobileNumber()).getId();
+			Long userId = loginServiceDao.findByMobileNumber(loginRequest.getMobileNumber()).getId();
 			System.out.println(userId);
-			
-			//delete token
+
+			// delete token
 			TokenDetailsRepo.deleteById(TokenDetailsRepo.findOneByLid(userId).getId());
 
 			loginServiceDao.deleteById(userId);
@@ -258,7 +259,7 @@ public class LoginServiceImpl implements LoginService {
 			statusDescription.setCode(ConstantManager.UserDeleted.getStatusCode());
 			statusDescription.setDescription(ConstantManager.UserDeleted.getDescription());
 			loginResponse.setStatusDescription(statusDescription);
-			
+
 		} catch (Exception e) {
 			statusDescription.setCode(ConstantManager.ServerSideError.getStatusCode());
 			statusDescription.setDescription(ConstantManager.ServerSideError.getDescription());

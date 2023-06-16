@@ -7,21 +7,22 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
 @Entity
-@Table(name ="tbl_testTable")
+@Table(name = "tbl_testTable")
 public class TestEntity {
 
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+
 	@Column(name = "testId")
 	private Long testId;
-	
+
 	@Column(name = "testType")
 	private String testType;
-	
+
 	@Column(name = "testCost")
 	private double testCost;
 

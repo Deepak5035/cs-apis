@@ -65,21 +65,26 @@ public class PatientServiceImpl implements PatientService {
 			for (TestRequest entity : patientRequest.getTestTypes()) {
 				PatientTestEntity patientTestEntity = new PatientTestEntity();
 				patientTestEntity.setTestType(entity.getTestType());
-				
-				TestEntity testEntity = testServiceDao.getTestIdByTestName(entity.getTestType().trim());
-				patientTestEntity.setTestId(testEntity.getTestId());
 
-				System.out.println(entity.getTestType());
-				System.out.println(entity.getTestCost());
-				System.out.println(testEntity.getTestCost());
-				
-				if(entity.getTestCost()  != 0.0) {
-					patientTestEntity.setTestCost(entity.getTestCost());
-				}else {
-					patientTestEntity.setTestCost(testEntity.getTestCost());
+				TestEntity testEntity = testServiceDao.getTestIdByTestName(entity.getTestType().trim());
+
+				if (testEntity != null) {
+
+					if (entity.getTestCost() != 0.0) {
+						patientTestEntity.setTestCost(entity.getTestCost());
+					} else {
+						patientTestEntity.setTestCost(testEntity.getTestCost());
+					}
+					patientTestEntity.setTestId(testEntity.getTestId());
+					patientTestEntity.setPatientEntity(patientEntity);
+					patientTestDao.save(patientTestEntity);
+
+				} else {
+					statusDescription.setDescription(ConstantManager.ServerSideError.getDescription());
+					statusDescription.setCode(ConstantManager.ServerSideError.getStatusCode());
+					patientResponse.setStatusDescription(statusDescription);
 				}
-				patientTestEntity.setPatientEntity(patientEntity);
-				patientTestDao.save(patientTestEntity);
+
 			}
 
 			statusDescription.setDescription(ConstantManager.Successfull.getDescription());
@@ -104,7 +109,7 @@ public class PatientServiceImpl implements PatientService {
 			List<PatientEntity> listOfAllEntity = patientServiceDao.findAll();
 
 			if (listOfAllEntity.size() > 0) {
-				
+
 				patientResponse.setPatientEntity(listOfAllEntity);
 				statusDescription.setDescription(ConstantManager.Successfull.getDescription());
 				statusDescription.setCode(ConstantManager.Successfull.getStatusCode());

@@ -12,6 +12,6 @@ import com.clinic.entity.TokenEntity;
 @Transactional
 public interface TokenDetailsRepo extends JpaRepository<TokenEntity, Long> {
 
-	@Query(value ="Select * from tbl_token_detail where cid =:cid ", nativeQuery = true)
-	TokenEntity findOneByLid(Long cid);
+	@Query(value ="Select * from tbl_token_detail where id =:id ", nativeQuery = true)
+	TokenEntity findOneByLid(Long id);
 }

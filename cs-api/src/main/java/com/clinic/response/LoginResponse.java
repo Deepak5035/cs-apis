@@ -8,7 +8,7 @@ public class LoginResponse {
 
      private StatusDescription statusDescription;
      
-     private LoginEntity loginEntity;
+     private LoginEntity loginEntity = new LoginEntity();
      
      private TokenEntity tokenEntity;
      
